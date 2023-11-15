@@ -26,7 +26,7 @@ export const Footer: React.FC = () => {
           <ul className="footer__links">
             <li className="footer__item">
               <a
-                href="https://github.com/artem-ivashchenko/react_phone-catalog"
+                href="https://github.com/artem-ivashchenko/device-catalog"
                 className="footer__link"
                 target="_blank"
                 rel="noreferrer"
