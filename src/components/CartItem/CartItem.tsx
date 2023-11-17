@@ -6,6 +6,7 @@ import { CartContext } from '../../storage/cartContext';
 import { CartItemType } from '../../types/cartItemType';
 
 import './cartItem.scss';
+import { ImageComponent } from '../ImageComponent';
 
 type Props = {
   item: CartItemType;
@@ -45,10 +46,10 @@ export const CartItem: React.FC<Props> = ({ item }) => {
         style={{ display: 'block' }}
       >
         <div className="cart-item__preview">
-          <img
+          <ImageComponent
             src={item.product.image}
             alt={item.product.name}
-            className="cart-item__preview-img"
+            classes="cart-item__preview-img"
           />
         </div>
       </Link>

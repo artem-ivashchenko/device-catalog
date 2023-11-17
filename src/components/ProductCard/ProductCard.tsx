@@ -10,6 +10,7 @@ import { FavouritesContext } from '../../storage/favoritesContext';
 import { Phone } from '../../types/phone';
 
 import './productcard.scss';
+import { ImageComponent } from '../ImageComponent';
 
 type Props = {
   product: Phone ;
@@ -32,8 +33,8 @@ export const ProductCard: React.FC<Props> = ({ product }) => {
         })}
       >
         <div className="product-card__image-container">
-          <img
-            className="product-card__image"
+          <ImageComponent
+            classes="product-card__image"
             src={product.image}
             alt={product.name}
           />

@@ -14,6 +14,7 @@ import { ProductSlider } from '../../components/ProductsSlider';
 import { CartContext } from '../../storage/cartContext';
 import { FavouritesContext } from '../../storage/favoritesContext';
 import { Phone } from '../../types/phone';
+import { ImageComponent } from '../../components/ImageComponent';
 
 export interface ColorsType {
   [key: string]: string;
@@ -144,8 +145,8 @@ export const ProductDetailsPage: React.FC = () => {
                     onClick={() => handleImageChange(image)}
                     aria-hidden
                   >
-                    <img
-                      className="details-page__photo"
+                    <ImageComponent
+                      classes="details-page__photo"
                       src={image}
                       alt={image}
                     />
@@ -154,8 +155,8 @@ export const ProductDetailsPage: React.FC = () => {
               </div>
 
               <div className="details-page__big-photo-container">
-                <img
-                  className="details-page__photo"
+                <ImageComponent
+                  classes="details-page__photo"
                   src={currentImage}
                   alt={currentImage}
                 />

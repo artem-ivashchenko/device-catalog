@@ -3,6 +3,7 @@ import { ReactSVG } from 'react-svg';
 import classNames from 'classnames';
 
 import './imageslider.scss';
+import { ImageComponent } from '../ImageComponent';
 
 const baseImages = [
   'img/banner-phones.png',
@@ -39,12 +40,8 @@ export const ImageSlider = () => {
   });
 
   return (
-    <div
-      className="image-slider"
-    >
-      <div
-        className="image-slider__content"
-      >
+    <div className="image-slider">
+      <div className="image-slider__content">
         <button
           type="button"
           className="image-slider__slide-button"
@@ -55,9 +52,7 @@ export const ImageSlider = () => {
           <ReactSVG src="img/icons/ArrowLeft.svg" />
         </button>
 
-        <div
-          className="image-slider__images-wrapper"
-        >
+        <div className="image-slider__images-wrapper">
           <div
             className="image-slider__images"
             style={{
@@ -66,11 +61,11 @@ export const ImageSlider = () => {
             }}
           >
             {baseImages.map(imageUrl => (
-              <img
+              <ImageComponent
                 key={imageUrl}
                 src={imageUrl}
                 alt={imageUrl}
-                className="image-slider__image"
+                classes="image-slider__image"
               />
             ))}
           </div>
@@ -96,8 +91,9 @@ export const ImageSlider = () => {
             onClick={() => setItemIndex(index)}
           >
             <div
-              className={classNames('image-slider__small-button',
-                { 'image-slider__small-button--active': index === itemIndex })}
+              className={classNames('image-slider__small-button', {
+                'image-slider__small-button--active': index === itemIndex,
+              })}
             />
           </button>
         ))}
