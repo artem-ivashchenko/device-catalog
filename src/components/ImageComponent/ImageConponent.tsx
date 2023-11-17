@@ -22,10 +22,11 @@ export const ImageComponent: React.FC<Props> = ({ src, alt, classes }) => {
   return (
     <>
       {!imgLoaded ? (
-        <img
-          src="img/placeholder.png"
-          alt="placeholder"
+        <div
           className={classes || ''}
+          style={{
+            background: 'linear-gradient(180deg, rgba(254,254,254,1) 0%, rgba(186,186,186,1) 100%)',
+          }}
         />
       ) : (
         <img
