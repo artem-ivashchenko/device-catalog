@@ -1,12 +1,8 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { ReactSVG } from 'react-svg';
 
 import './breadcrumbs.scss';
-
-export const capitalize = (string: string) => {
-  return string.slice(0, 1).toUpperCase() + string.slice(1);
-};
 
 type Props = {
   productName?: string;
@@ -15,6 +11,10 @@ type Props = {
 export const BreadCrumbs: React.FC<Props> = ({ productName }) => {
   const { pathname } = useLocation();
   const directory = pathname.split('/')[1];
+
+  const capitalize = useCallback((string: string) => {
+    return string.slice(0, 1).toUpperCase() + string.slice(1);
+  }, []);
 
   return (
     <div data-cy="breadCrumbs" className="breadcrumbs">

@@ -2,8 +2,6 @@
 import React, { useState, useEffect } from 'react';
 import { ReactSVG } from 'react-svg';
 
-import { useViewport } from '../../helpers/useViewport';
-
 import { Phone } from '../../types/phone';
 
 import './productsslider.scss';
@@ -16,16 +14,14 @@ import {
 } from '../../api/products';
 import { Loader } from '../Loader';
 import { LoadingError } from '../LoadingError';
+import { useViewport } from '../../helpers/useViewport';
 
 type Props = {
   title: string;
 };
 
 export const ProductSlider: React.FC<Props> = ({ title }) => {
-  const {
-    width, isTabletLaptopSize, isMobileSize, isDesktopSize,
-  }
-    = useViewport();
+  const { isTabletLaptopSize, isDesktopSize, isMobileSize } = useViewport();
 
   const [products, setProducts] = useState<Phone[]>([]);
   const [itemIndex, setItemIndex] = useState(0);
@@ -79,7 +75,7 @@ export const ProductSlider: React.FC<Props> = ({ title }) => {
     } else {
       setItemsVisible(3);
     }
-  }, [width]);
+  }, [window.innerWidth]);
 
   const handleLeftButton = () => {
     setItemIndex((ind) => ind - 1);

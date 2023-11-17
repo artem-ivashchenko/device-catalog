@@ -1,32 +1,13 @@
-import { useState, useEffect } from 'react';
+import { useMediaQuery } from 'react-responsive';
 
 export const useViewport = () => {
-  const [width, setWidth] = useState(window.innerWidth);
-  const [isMobileSize, setIsMobileSize] = useState(width < 576);
-  const [isTabletSize, setIsTabletSize] = useState(width < 767);
-  const [isTabletLaptopSize, setIsTabletLaptopSize] = useState(width < 992);
-  const [isLaptopSize, setIsLaptopSize] = useState(width < 1024);
-  const [isDesktopSize, setIsDesktopSize] = useState(width > 1200);
-
-  useEffect(() => {
-    const handleWindow = () => {
-      setWidth(window.innerWidth);
-      setIsMobileSize(window.innerWidth < 576);
-      setIsTabletSize(window.innerWidth < 767);
-      setIsTabletLaptopSize(window.innerWidth < 992);
-      setIsLaptopSize(window.innerWidth < 1024);
-      setIsDesktopSize(window.innerWidth > 1200);
-    };
-
-    window.addEventListener('resize', handleWindow);
-
-    return () => {
-      window.removeEventListener('resize', handleWindow);
-    };
-  }, []);
+  const isMobileSize = useMediaQuery({ query: '(max-width: 576px)' });
+  const isTabletSize = useMediaQuery({ query: '(max-width: 767px)' });
+  const isTabletLaptopSize = useMediaQuery({ query: '(max-width: 992px)' });
+  const isLaptopSize = useMediaQuery({ query: '(max-width: 1024px)' });
+  const isDesktopSize = useMediaQuery({ query: '(min-width: 1200px)' });
 
   return {
-    width,
     isTabletSize,
     isMobileSize,
     isTabletLaptopSize,

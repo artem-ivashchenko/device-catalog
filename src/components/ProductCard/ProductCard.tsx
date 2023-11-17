@@ -24,7 +24,13 @@ export const ProductCard: React.FC<Props> = ({ product }) => {
     <div
       className="product-card"
     >
-      <Link to={`/${product.category}/${product.phoneId}`}>
+      <Link
+        to={`/${product.category}/${product.phoneId}`}
+        onClick={() => window.scrollTo({
+          top: 0,
+          behavior: 'smooth',
+        })}
+      >
         <div className="product-card__image-container">
           <img
             className="product-card__image"

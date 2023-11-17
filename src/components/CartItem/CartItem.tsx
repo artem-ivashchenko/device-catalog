@@ -21,18 +21,10 @@ export const CartItem: React.FC<Props> = ({ item }) => {
     setCart((prev) => prev.filter((cartItem) => cartItem.id !== item.id));
   };
 
-  const handlePlusQuantity = () => {
+  const handleQuantity = (plus : boolean) => {
     setCart((prev) => prev.map((cartItem) => {
       return cartItem.id === item.id
-        ? { ...cartItem, quantity: cartItem.quantity + 1 }
-        : cartItem;
-    }));
-  };
-
-  const handleMinusQuantity = () => {
-    setCart((prev) => prev.map((cartItem) => {
-      return cartItem.id === item.id
-        ? { ...cartItem, quantity: cartItem.quantity - 1 }
+        ? { ...cartItem, quantity: plus ? cartItem.quantity + 1 : cartItem.quantity - 1 }
         : cartItem;
     }));
   };
@@ -72,7 +64,7 @@ export const CartItem: React.FC<Props> = ({ item }) => {
         <button
           type="button"
           className="cart-item__quantity-button"
-          onClick={handleMinusQuantity}
+          onClick={() => handleQuantity(false)}
           disabled={isMinusDisabled}
         >
           <ReactSVG src="img/icons/Minus.svg" />
@@ -83,7 +75,7 @@ export const CartItem: React.FC<Props> = ({ item }) => {
         <button
           type="button"
           className="cart-item__quantity-button"
-          onClick={handlePlusQuantity}
+          onClick={() => handleQuantity(true)}
           disabled={isPlusDisabled}
         >
           <ReactSVG src="img/icons/Plus.svg" />

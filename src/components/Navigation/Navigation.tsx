@@ -4,7 +4,6 @@ import classNames from 'classnames';
 import { ReactSVG } from 'react-svg';
 import { CSSTransition } from 'react-transition-group';
 
-import { useViewport } from '../../helpers/useViewport';
 import { CartContext } from '../../storage/cartContext';
 import { FavouritesContext } from '../../storage/favoritesContext';
 
@@ -13,6 +12,7 @@ import { Menu } from '../Menu';
 import { Search } from '../Search';
 
 import './navigation.scss';
+import { useViewport } from '../../helpers/useViewport';
 
 function getActiveClass({ isActive }: { isActive: boolean }) {
   return classNames('navigation__page-link', 'navigation__after', {
@@ -21,8 +21,8 @@ function getActiveClass({ isActive }: { isActive: boolean }) {
 }
 
 export const Navigation: React.FC = () => {
+  const { isTabletLaptopSize } = useViewport();
   const [isMenuOpened, setIsMenuOpened] = useState(false);
-  const { isTabletLaptopSize, width } = useViewport();
   const { cart } = useContext(CartContext);
   const { favorites } = useContext(FavouritesContext);
   const { pathname } = useLocation();
@@ -31,7 +31,7 @@ export const Navigation: React.FC = () => {
     if (!isTabletLaptopSize) {
       setIsMenuOpened(false);
     }
-  }, [width]);
+  }, [window.innerWidth]);
 
   useEffect(() => {
     if (isMenuOpened) {
@@ -64,7 +64,7 @@ export const Navigation: React.FC = () => {
                 <ReactSVG src="img/icons/Hamburger.svg" />
               </div>
             </li>
-          ) }
+          )}
 
           <li className="navigation__item">
             <Logo />
@@ -103,19 +103,15 @@ export const Navigation: React.FC = () => {
             <NavLink
               to="/favorites"
               className={({ isActive }) => {
-                return classNames(
-                  'navigation__icon',
-                  'navigation__after',
-                  { 'navigation__icon--active': isActive },
-                );
+                return classNames('navigation__icon', 'navigation__after', {
+                  'navigation__icon--active': isActive,
+                });
               }}
             >
               <div className="navigation__icon-container">
                 <ReactSVG src="img/icons/Favourites.svg" />
                 {favorites.length > 0 && (
-                  <div className="navigation__counter">
-                    {favorites.length}
-                  </div>
+                  <div className="navigation__counter">{favorites.length}</div>
                 )}
               </div>
             </NavLink>
@@ -125,19 +121,15 @@ export const Navigation: React.FC = () => {
             <NavLink
               to="/cart"
               className={({ isActive }) => {
-                return classNames(
-                  'navigation__icon',
-                  'navigation__after',
-                  { 'navigation__icon--active': isActive },
-                );
+                return classNames('navigation__icon', 'navigation__after', {
+                  'navigation__icon--active': isActive,
+                });
               }}
             >
               <div className="navigation__icon-container">
                 <ReactSVG src="img/icons/Cart.svg" />
                 {cart.length > 0 && (
-                  <div className="navigation__counter">
-                    {cart.length}
-                  </div>
+                  <div className="navigation__counter">{cart.length}</div>
                 )}
               </div>
             </NavLink>

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import { getPhones } from '../../api/products';
-import { categories } from './utils';
+import { CategoriesType, categories } from './utils';
 import './categories.scss';
 
 export const Categories: React.FC = () => {
@@ -11,13 +11,13 @@ export const Categories: React.FC = () => {
   const [accessoriesLength] = useState(0);
   const [hasError, setHasError] = useState(false);
 
-  function getModelsLength(modifier: string) {
+  function getModelsLength(modifier: CategoriesType) {
     switch (modifier) {
-      case 'phone':
+      case CategoriesType.phone:
         return phonesLength;
-      case 'tablet':
+      case CategoriesType.tablet:
         return tabletsLength;
-      case 'accessories':
+      case CategoriesType.accessories:
         return accessoriesLength;
       default:
         throw new Error('Could not count products...');
@@ -49,7 +49,7 @@ export const Categories: React.FC = () => {
           <Link to={link} className="categories__link" key={link}>
             <div
               className={`categories__link-image-container
-              categories__link-image-container--${modifier}`}
+              categories__link-image-container--${CategoriesType[modifier]}`}
             >
               <img className="categories__link-image" src={image} alt={name} />
             </div>
