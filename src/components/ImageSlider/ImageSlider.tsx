@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { ReactSVG } from 'react-svg';
 import classNames from 'classnames';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 
+import 'react-lazy-load-image-component/src/effects/blur.css';
 import './imageslider.scss';
-import { ImageComponent } from '../ImageComponent';
 
 const baseImages = [
   'img/banner-phones.png',
@@ -61,11 +62,14 @@ export const ImageSlider = () => {
             }}
           >
             {baseImages.map(imageUrl => (
-              <ImageComponent
+              <LazyLoadImage
                 key={imageUrl}
                 src={imageUrl}
                 alt={imageUrl}
-                classes="image-slider__image"
+                className="image-slider__image"
+                wrapperClassName="image-slider__image"
+                placeholderSrc="img/placeholder.png"
+                effect="blur"
               />
             ))}
           </div>

@@ -2,11 +2,12 @@ import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { ReactSVG } from 'react-svg';
 
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { CartContext } from '../../storage/cartContext';
 import { CartItemType } from '../../types/cartItemType';
 
 import './cartItem.scss';
-import { ImageComponent } from '../ImageComponent';
+import 'react-lazy-load-image-component/src/effects/blur.css';
 
 type Props = {
   item: CartItemType;
@@ -46,10 +47,13 @@ export const CartItem: React.FC<Props> = ({ item }) => {
         style={{ display: 'block' }}
       >
         <div className="cart-item__preview">
-          <ImageComponent
+          <LazyLoadImage
             src={item.product.image}
             alt={item.product.name}
-            classes="cart-item__preview-img"
+            className="cart-item__preview-img"
+            wrapperClassName="cart-item__preview-img"
+            placeholderSrc="img/placeholder.png"
+            effect="blur"
           />
         </div>
       </Link>

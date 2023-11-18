@@ -3,14 +3,15 @@ import { Link } from 'react-router-dom';
 import classNames from 'classnames';
 import { ReactSVG } from 'react-svg';
 
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { CartContext } from '../../storage/cartContext';
 import { PriceContext } from '../../storage/fullPriceСontext';
 import { FavouritesContext } from '../../storage/favoritesContext';
 
 import { Phone } from '../../types/phone';
 
+import 'react-lazy-load-image-component/src/effects/blur.css';
 import './productcard.scss';
-import { ImageComponent } from '../ImageComponent';
 
 type Props = {
   product: Phone ;
@@ -33,10 +34,13 @@ export const ProductCard: React.FC<Props> = ({ product }) => {
         })}
       >
         <div className="product-card__image-container">
-          <ImageComponent
-            classes="product-card__image"
+          <LazyLoadImage
             src={product.image}
             alt={product.name}
+            className="product-card__image"
+            wrapperClassName="product-card__image"
+            effect="blur"
+            placeholderSrc="img/placeholder.png"
           />
         </div>
 

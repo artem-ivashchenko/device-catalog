@@ -3,10 +3,10 @@ import { useNavigate, useParams } from 'react-router-dom';
 import classNames from 'classnames';
 import { ReactSVG } from 'react-svg';
 
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { getPhoneDetails, getPhones } from '../../api/products';
 import { PhoneDetails } from '../../types/phoneDetails';
 
-import './productDetailsPage.scss';
 import { BackButton } from '../../components/BackButton';
 import { BreadCrumbs } from '../../components/BreadCrumbs';
 import { Loader } from '../../components/Loader';
@@ -14,7 +14,9 @@ import { ProductSlider } from '../../components/ProductsSlider';
 import { CartContext } from '../../storage/cartContext';
 import { FavouritesContext } from '../../storage/favoritesContext';
 import { Phone } from '../../types/phone';
-import { ImageComponent } from '../../components/ImageComponent';
+
+import './productDetailsPage.scss';
+import 'react-lazy-load-image-component/src/effects/blur.css';
 
 export interface ColorsType {
   [key: string]: string;
@@ -145,20 +147,26 @@ export const ProductDetailsPage: React.FC = () => {
                     onClick={() => handleImageChange(image)}
                     aria-hidden
                   >
-                    <ImageComponent
-                      classes="details-page__photo"
+                    <LazyLoadImage
                       src={image}
                       alt={image}
+                      className="details-page__photo"
+                      wrapperClassName="details-page__photo"
+                      effect="blur"
+                      placeholderSrc="img/placeholder.png"
                     />
                   </div>
                 ))}
               </div>
 
               <div className="details-page__big-photo-container">
-                <ImageComponent
-                  classes="details-page__photo"
+                <LazyLoadImage
                   src={currentImage}
                   alt={currentImage}
+                  className="details-page__photo"
+                  wrapperClassName="details-page__photo"
+                  effect="blur"
+                  placeholderSrc="img/placeholder.png"
                 />
               </div>
 

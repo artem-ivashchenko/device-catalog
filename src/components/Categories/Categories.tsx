@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { getPhones } from '../../api/products';
 import { CategoriesType, categories } from './utils';
+
 import './categories.scss';
-import { ImageComponent } from '../ImageComponent';
+import 'react-lazy-load-image-component/src/effects/blur.css';
 
 export const Categories: React.FC = () => {
   const [phonesLength, setPhonesLength] = useState(0);
@@ -52,7 +54,14 @@ export const Categories: React.FC = () => {
               className={`categories__link-image-container
               categories__link-image-container--${CategoriesType[modifier]}`}
             >
-              <ImageComponent classes="categories__link-image" src={image} alt={name} withoutBg />
+              <LazyLoadImage
+                src={image}
+                alt={name}
+                className="categories__link-image"
+                wrapperClassName="categories__lazy-wrapper"
+                placeholderSrc="img/placeholder.png"
+                effect="blur"
+              />
             </div>
 
             <h3 className="categories__link-title">{name}</h3>
