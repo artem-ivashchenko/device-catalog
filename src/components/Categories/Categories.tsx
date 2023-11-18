@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { getPhones } from '../../api/products';
 import { CategoriesType, categories } from './utils';
 import './categories.scss';
+import { ImageComponent } from '../ImageComponent';
 
 export const Categories: React.FC = () => {
   const [phonesLength, setPhonesLength] = useState(0);
@@ -51,7 +52,7 @@ export const Categories: React.FC = () => {
               className={`categories__link-image-container
               categories__link-image-container--${CategoriesType[modifier]}`}
             >
-              <img className="categories__link-image" src={image} alt={name} />
+              <ImageComponent classes="categories__link-image" src={image} alt={name} withoutBg />
             </div>
 
             <h3 className="categories__link-title">{name}</h3>

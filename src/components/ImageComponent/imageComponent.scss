@@ -1,0 +1,29 @@
+.image-component {
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background: linear-gradient(180deg, rgba(254,254,254,1) 0%, rgba(186,186,186,1) 100%);
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-color: rgba(255,255,255,0.9);
+    animation: pulse 2.5s infinite;
+    transition: all 0.3s ease-in-out;
+
+    @keyframes pulse {
+      0% {
+        background-color: rgba(255,255,255,0);
+      }
+      50% {
+        background-color: rgba(255,255,255,0.9);
+      }
+      100% {
+        background-color: rgba(255,255,255,0);
+      }
+    }
+  }
+}
+

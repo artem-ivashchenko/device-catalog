@@ -1,37 +1,39 @@
 import React, { useEffect, useState } from 'react';
+import './imageComponent.scss';
 
 type Props = {
   src: string;
   alt: string;
   classes?: string;
+  withoutBg?: boolean
 };
 
-export const ImageComponent: React.FC<Props> = ({ src, alt, classes }) => {
+export const ImageComponent: React.FC<Props> = ({
+  src, alt, classes, withoutBg,
+}) => {
   const [imgLoaded, setImgLoaded] = useState(false);
 
   useEffect(() => {
     const img = new Image();
 
+    img.src = src;
+
     img.onload = () => {
       setImgLoaded(true);
     };
-
-    img.src = src;
   }, [src]);
 
   return (
     <>
       {!imgLoaded ? (
-        <div
-          className={classes || ''}
-          style={{
-            background: 'linear-gradient(180deg, rgba(254,254,254,1) 0%, rgba(186,186,186,1) 100%)',
-          }}
-        />
+        !withoutBg && (
+          <div className={`image-component ${classes}`} />
+        )
       ) : (
         <img
           src={src}
           alt={alt}
+          loading="lazy"
           className={classes || ''}
         />
       )}
